@@ -39,7 +39,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'oc_lettings.urls'
+ROOT_URLCONF = 'oc_lettings_site.urls'
 
 TEMPLATES = [
     {
@@ -57,7 +57,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'oc_lettings.wsgi.application'
+WSGI_APPLICATION = 'oc_lettings_site.wsgi.application'
 
 
 # Database
