@@ -1,8 +1,5 @@
 version: 2.1
 
-orbs:
-  heroku: circleci/heroku@1.0.2
-
 jobs:
   build-and-deploy:
     docker:
@@ -15,16 +12,19 @@ jobs:
           command: |
             sudo apt-get update
             sudo apt-get install -y docker-compose
+            sudo apt-get install -y curl
+            sudo curl https://cli-assets.heroku.com/install.sh | sh
+            heroku container:login
       - run:
           name: Build and push Docker image to Heroku
           command: |
             docker-compose -f docker-compose.heroku.yml build web
             docker tag oclettingssite_web registry.heroku.com/oclettingssite/web
             docker push registry.heroku.com/oclettingssite/web
-      - heroku/deploy-via-container:
-          app-name: oclettingssite
-          include-previous-release: true
-          release-phase: true
+      - run:
+          name: Deploy Docker image to Heroku
+          command: |
+            heroku container:release web --app oclettingssite
 workflows:
   build-and-deploy:
     jobs:
