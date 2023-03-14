@@ -112,5 +112,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 
+# Default primary key field type
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
 # Deployment with Heroku
 django_heroku.settings(locals())
