@@ -1,18 +1,22 @@
-# Base image
-FROM python:3.9.9-buster
+# Use the official Python image as the base image
+FROM python:3.9-slim-buster
 
-# Set the working directory
-WORKDIR /app
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+# Set the working directory in the container
+WORKDIR /code
 
 # Copy the requirements file and install dependencies
 COPY requirements.txt .
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the source code into the container
+# Copy the application code to the container
 COPY . .
 
-# Expose the port
+# Expose port 8000
 EXPOSE 8000
 
-# Set the command to run the application
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+# Run the command to start the server
+CMD ["python", "manage.py", "runserver", "gunicorn", "oc_lettings_site.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "4"]

@@ -1,0 +1,9 @@
+version: "3.9"
+
+services:
+  web:
+    image: registry.heroku.com/oclettingssite/web
+    command: sh -c 'cd oc_lettings_site && gunicorn $(cat Procfile | sed "s/\\r//g" | sed "s/#.*//g" | head -1) --bind 0.0.0.0:$PORT --workers 4'
+    expose:
+      - $PORT
+    restart: always
