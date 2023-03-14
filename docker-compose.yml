@@ -1,10 +1,22 @@
 version: '3'
-
 services:
   web:
     build: .
+    image: romansainthilaire/oc_lettings_site:latest
+    command: python manage.py runserver 0.0.0.0:8000
     ports:
       - "8000:8000"
     volumes:
       - .:/app
-    command: python manage.py runserver 0.0.0.0:8000
+    environment:
+      - PYTHONDONTWRITEBYTECODE=1
+      - PYTHONUNBUFFERED=1
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    logging:
+      driver: json-file
+      options:
+        max-size: "50m"
+        max-file: "3"
