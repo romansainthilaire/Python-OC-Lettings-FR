@@ -7,9 +7,4 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8000:8000"
-    environment:
-      - SECRET_KEY=2hrc_hgvwww6r^x*1^97lt)nl@r3elg)m^-129zm8dp0_qih
-      - DEBUG=True
-      - ALLOWED_HOSTS=localhost,127.0.0.1,0.0.0.0
     command: python manage.py runserver 0.0.0.0:8000
-
