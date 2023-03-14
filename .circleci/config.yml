@@ -1,31 +1,7 @@
 version: 2.1
-
-jobs:
-  build-and-deploy:
-    docker:
-      - image: circleci/python:3.8
-    working_directory: ~/repo
-    steps:
-      - checkout
-      - run:
-          name: Install dependencies
-          command: |
-            sudo apt-get update
-            sudo apt-get install -y docker-compose
-            sudo apt-get install -y curl
-            sudo curl https://cli-assets.heroku.com/install.sh | sh
-            heroku container:login
-      - run:
-          name: Build and push Docker image to Heroku
-          command: |
-            docker-compose -f docker-compose.heroku.yml build web
-            docker tag oclettingssite_web registry.heroku.com/oclettingssite/web
-            docker push registry.heroku.com/oclettingssite/web
-      - run:
-          name: Deploy Docker image to Heroku
-          command: |
-            heroku container:release web --app oclettingssite
+orbs:
+  heroku: circleci/heroku@0.0.10
 workflows:
-  build-and-deploy:
+  heroku_deploy:
     jobs:
-      - build-and-deploy
+      - heroku/deploy-via-git
