@@ -9,9 +9,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
-SECRET_KEY = os.environ.get("SECRET_KEY")
-DEBUG = bool(os.environ.get("DEBUG"))
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS")
+SECRET_KEY = os.environ.get("SECRET_KEY", "secret_key")
+DEBUG = bool(os.environ.get("DEBUG", "True"))
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "127.0.0.1")
 
 
 # Application definition
