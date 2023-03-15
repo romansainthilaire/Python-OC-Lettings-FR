@@ -23,7 +23,7 @@ jobs:
       - run:
           name: Create superuser
           command: |
-            heroku run python manage.py shell < END
+            heroku run python manage.py shell <
             from django.contrib.auth import get_user_model
             User = get_user_model()
             if not User.objects.filter(username=os.getenv('SUPERUSER_USERNAME')).exists():
