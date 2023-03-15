@@ -10,8 +10,14 @@ jobs:
       - image: circleci/python:3.8
     steps:
       - checkout
-      - run: pip install -r requirements.txt
-      - run: pytest
+      - run:
+          name: Install requirements
+          command: |
+            pip install -r requirements.txt
+      - run:
+          name: Run tests
+          command: |
+            pytest
   deploy:
     docker:
       - image: circleci/python:3.8
@@ -20,10 +26,6 @@ jobs:
       - heroku/deploy-via-git:
           app-name: $HEROKU_APP_NAME
           branch: master
-      - run:
-          name: Set environment variables
-          command: |
-            echo "export DEBUG=${DEBUG}" >> $BASH_ENV
       - run:
           name: Install Heroku CLI
           command: |
