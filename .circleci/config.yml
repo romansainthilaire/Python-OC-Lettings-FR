@@ -23,13 +23,12 @@ jobs:
       - run:
           name: Create superuser
           command: |
-            heroku run python manage.py shell << END
+            heroku run python -c "
             from django.contrib.auth import get_user_model
             User = get_user_model()
             if not User.objects.filter(username='${SUPERUSER_USERNAME}').exists():
                 User.objects.create_superuser('${SUPERUSER_USERNAME}', '${SUPERUSER_EMAIL}', '${SUPERUSER_PASSWORD}')
-            END
-            --app oclettingssite
+            "
 
 workflows:
   build_and_deploy:
