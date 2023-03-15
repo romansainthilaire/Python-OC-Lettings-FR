@@ -20,6 +20,14 @@ jobs:
       - heroku/deploy-via-git:
           app-name: oclettingssite
           branch: master
+      - run:
+          name: Create superuser
+          command: |
+            python manage.py shell << END
+            from django.contrib.auth import get_user_model
+            User = get_user_model()
+            User.objects.create_superuser('${SUPERUSER_USERNAME}', '${SUPERUSER_EMAIL}', '${SUPERUSER_PASSWORD}')
+            END
 
 workflows:
   build_and_deploy:
