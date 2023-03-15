@@ -31,9 +31,10 @@ jobs:
           command: |
             curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
       - run:
-          name: Set environment variables
+          name: Set config variables
           command: |
             heroku config:set SECRET_KEY=$SECRET_KEY DEBUG=$DEBUG ALLOWED_HOSTS=$ALLOWED_HOSTS --app $HEROKU_APP_NAME
+            heroku ps:scale web=0
       - run:
           name: Create admin
           command: |
