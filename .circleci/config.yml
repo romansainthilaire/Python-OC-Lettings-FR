@@ -34,7 +34,7 @@ jobs:
           name: Set config variables
           command: |
             heroku config:set SECRET_KEY=$SECRET_KEY DEBUG=$DEBUG ALLOWED_HOSTS=$ALLOWED_HOSTS --app $HEROKU_APP_NAME
-            heroku ps:scale web=0
+            heroku ps:scale web=0 --app $HEROKU_APP_NAME
       - run:
           name: Create admin
           command: |
