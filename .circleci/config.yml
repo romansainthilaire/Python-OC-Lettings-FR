@@ -39,7 +39,7 @@ jobs:
           name: Deploy to Heroku
           command: |
             heroku container:login
-            heroku container:release web --app oclettingssite --remote docker --token $HEROKU_API_KEY
+            heroku container:release web --app oclettingssite --token $HEROKU_API_KEY
 
 workflows:
   build_and_deploy:
