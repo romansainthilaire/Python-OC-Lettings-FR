@@ -27,7 +27,11 @@ jobs:
       - run:
           name: Create admin
           command: |
-            heroku run python manage.py createadmin --app oclettingssite
+            heroku run python manage.py createadmin \
+            --username $ADMIN_USERNAME \
+            --email $ADMIN_EMAIL \
+            --password $ADMIN_PASSWORD \
+            --app oclettingssite
 
 workflows:
   build_and_deploy:

@@ -6,14 +6,20 @@ from django.db.utils import IntegrityError
 
 
 class Command(BaseCommand):
+
+    def add_arguments(self, parser):
+        parser.add_argument("username", type=str)
+        parser.add_argument("email", type=str)
+        parser.add_argument("password", type=str)
+
     def handle(self, **options):
         print("This is the admin username : " + os.environ.get("ADMIN_USERNAME"))
         User = get_user_model()
         try:
             User.objects.create_superuser(
-                os.environ.get("ADMIN_USERNAME"),
-                os.environ.get("ADMIN_EMAIL"),
-                os.environ.get("ADMIN_PASSWORD")
+                username=options["username"],
+                username=options["email"],
+                username=options["pasword"]
                 )
         except IntegrityError:
             pass
