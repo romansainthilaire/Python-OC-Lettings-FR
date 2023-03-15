@@ -33,9 +33,7 @@ jobs:
       - run:
           name: Set environment variables
           command: |
-            heroku config:set SECRET_KEY=$SECRET_KEY --app $HEROKU_APP_NAME
-            heroku config:set DEBUG=$DEBUG --app $HEROKU_APP_NAME
-            heroku config:set ALLOWED_HOSTS=$ALLOWED_HOSTS --app $HEROKU_APP_NAME
+            heroku config:set SECRET_KEY=$SECRET_KEY DEBUG=$DEBUG ALLOWED_HOSTS=$ALLOWED_HOSTS --app $HEROKU_APP_NAME
       - run:
           name: Create admin
           command: |
