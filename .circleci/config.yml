@@ -15,6 +15,11 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Install cURL
+          command: |
+            sudo apt-get update
+            sudo apt-get install -y curl
+      - run:
           name: Install Docker
           command: |
             curl https://get.docker.com | bash
