@@ -21,6 +21,10 @@ jobs:
           app-name: $HEROKU_APP_NAME
           branch: master
       - run:
+          name: Set environment variables
+          command: |
+            echo "export DEBUG=${DEBUG}" >> $BASH_ENV
+      - run:
           name: Install Heroku CLI
           command: |
             curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
