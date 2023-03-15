@@ -14,6 +14,10 @@ jobs:
       - image: romansainthilaire/oc_lettings_site:latest
     steps:
       - checkout
+      - run:
+          name: Install Docker
+          command: |
+            curl https://get.docker.com | bash
       - run: |
           echo "$HEROKU_API_KEY" | docker login -u "$HEROKU_USERNAME" --password-stdin registry.heroku.com
           docker tag romansainthilaire/oc_lettings_site:latest registry.heroku.com/oclettingssite/web
