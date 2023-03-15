@@ -1,9 +1,7 @@
 version: '3'
-
 services:
   web:
     build: .
-    image: romansainthilaire/oc_lettings_site
     command: sh -c "timeout 600 python manage.py runserver 0.0.0.0:8000"
     ports:
       - "8000:8000"
