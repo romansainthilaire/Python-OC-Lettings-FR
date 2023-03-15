@@ -13,13 +13,13 @@ class Command(BaseCommand):
         parser.add_argument("password", type=str)
 
     def handle(self, **options):
-        print("This is the admin username : " + os.environ.get("ADMIN_USERNAME"))
+        print("This is the admin username : " + os.getenv("ADMIN_USERNAME"))
         User = get_user_model()
         try:
             User.objects.create_superuser(
                 username=options["username"],
-                username=options["email"],
-                username=options["pasword"]
+                email=options["email"],
+                password=options["password"],
                 )
         except IntegrityError:
             pass
