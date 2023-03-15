@@ -14,6 +14,7 @@ jobs:
       - run: pip install -r requirements.txt
       - run: python manage.py collectstatic --noinput
       - run: docker build -t romansainthilaire/oc_lettings_site .
+      - run: echo "$DOCKERHUB_PASSWORD" | docker login --username romansainthilaire --password-stdin
       - run: docker push romansainthilaire/oc_lettings_site
 
   deploy:
