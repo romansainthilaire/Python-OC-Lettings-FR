@@ -7,15 +7,13 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument("username")
-        parser.add_argument("email")
         parser.add_argument("password")
 
-    def handle(self, *args, **options):
+    def handle(self, **options):
         User = get_user_model()
         try:
             User.objects.create_superuser(
                 username=options["username"],
-                email=options["email"],
                 password=options["password"]
                 )
         except IntegrityError:

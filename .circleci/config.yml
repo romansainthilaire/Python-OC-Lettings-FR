@@ -31,9 +31,9 @@ jobs:
           command: |
             curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
       - run:
-          name: Create admin
+          name: Create superuser
           command: |
-            heroku run python manage.py createadmin $ADMIN_USERNAME $ADMIN_EMAIL $ADMIN_PASSWORD --app $HEROKU_APP_NAME
+            heroku run python manage.py csu $SUPERUSER_USERNAME $SUPERUSER_PASSWORD --app $HEROKU_APP_NAME
 
 workflows:
   build_and_deploy:
@@ -42,3 +42,7 @@ workflows:
       - deploy:
           requires:
             - build
+          filters:
+            branches:
+              only:
+                - master
