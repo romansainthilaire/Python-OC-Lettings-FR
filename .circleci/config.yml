@@ -34,6 +34,10 @@ jobs:
           name: Create admin
           command: |
             heroku run python manage.py createadmin $ADMIN_USERNAME $ADMIN_EMAIL $ADMIN_PASSWORD --app $HEROKU_APP_NAME
+    env:
+      SECRET_KEY: $SECRET_KEY
+      DEBUG: $DEBUG
+      ALLOWED_HOSTS: $ALLOWED_HOSTS
 
 workflows:
   build_and_deploy:
