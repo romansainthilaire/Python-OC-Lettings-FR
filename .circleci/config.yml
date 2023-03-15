@@ -23,7 +23,7 @@ jobs:
       - run:
           name: Create superuser
           command: |
-            python manage.py createsuperuser \
+            heroku run python manage.py createsuperuser \
             --username=${SUPERUSER_USERNAME} \
             --email=${SUPERUSER_EMAIL} \
             --password=${SUPERUSER_PASSWORD}
