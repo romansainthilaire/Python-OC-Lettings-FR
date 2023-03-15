@@ -26,7 +26,8 @@ jobs:
             heroku run python manage.py createsuperuser \
             --username=${SUPERUSER_USERNAME} \
             --email=${SUPERUSER_EMAIL} \
-            --password=${SUPERUSER_PASSWORD}
+            --password=${SUPERUSER_PASSWORD} \
+            --app oclettingssite
 
 workflows:
   build_and_deploy:
