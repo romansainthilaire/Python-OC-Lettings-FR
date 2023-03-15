@@ -15,8 +15,8 @@ environ.Env.read_env(env_file=os.path.join(BASE_DIR, "oc_lettings_site", ".env")
 
 
 SECRET_KEY = os.environ.get(env("SECRET_KEY"), "secret_key")
-DEBUG = bool(os.environ.get(str(env.bool("DEBUG")), "True"))
-ALLOWED_HOSTS = os.environ.get(env.list("ALLOWED_HOSTS"), "127.0.0.1")
+DEBUG = bool(os.environ.get(env("DEBUG"), "True"))
+ALLOWED_HOSTS = os.environ.get(env("ALLOWED_HOSTS"), "127.0.0.1")
 
 
 # Application definition
