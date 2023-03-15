@@ -21,10 +21,6 @@ jobs:
   deploy:
     docker:
       - image: circleci/python:3.8
-    environment:
-      SECRET_KEY: $SECRET_KEY
-      DEBUG: $DEBUG
-      ALLOWED_HOSTS: $ALLOWED_HOSTS
     steps:
       - checkout
       - heroku/deploy-via-git:
@@ -34,6 +30,12 @@ jobs:
           name: Install Heroku CLI
           command: |
             curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
+      - run:
+          name: Set environment variables
+          command: |
+            heroku config:set SECRET_KEY=$SECRET_KEY
+            heroku config:set DEBUG=$DEBUG
+            heroku config:set ALLOWED_HOSTS=$ALLOWED_HOSTS
       - run:
           name: Create admin
           command: |
