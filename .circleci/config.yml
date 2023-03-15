@@ -11,9 +11,15 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install requirements
+          name: Install dependencies
           command: |
             pip install -r requirements.txt
+      - run:
+          name: Set environment variables
+          command: |
+            echo "SECRET_KEY=${SECRET_KEY}" >> oc_lettings_site/.env
+            echo "DEBUG=${DEBUG}" >> oc_lettings_site/.env
+            echo "ALLOWED_HOSTS=${ALLOWED_HOSTS}" >> oc_lettings_site/.env
       - run:
           name: Run tests
           command: |
