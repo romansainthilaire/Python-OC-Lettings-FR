@@ -7,6 +7,7 @@ from django.db.utils import IntegrityError
 
 class Command(BaseCommand):
     def handle(self, **options):
+        print(os.environ.get("ADMIN_USERNAME"))
         User = get_user_model()
         try:
             User.objects.create_superuser(
