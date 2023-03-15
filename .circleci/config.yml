@@ -15,12 +15,6 @@ jobs:
           command: |
             pip install -r requirements.txt
       - run:
-          name: Set environment variables
-          command: |
-            echo "SECRET_KEY=${SECRET_KEY}" >> oc_lettings_site/.env
-            echo "DEBUG=${DEBUG}" >> oc_lettings_site/.env
-            echo "ALLOWED_HOSTS=${ALLOWED_HOSTS}" >> oc_lettings_site/.env
-      - run:
           name: Run tests
           command: |
             pytest
@@ -29,6 +23,12 @@ jobs:
       - image: circleci/python:3.8
     steps:
       - checkout
+      - run:
+          name: Set environment variables
+          command: |
+            echo "SECRET_KEY=${SECRET_KEY}" >> oc_lettings_site/.env
+            echo "DEBUG=${DEBUG}" >> oc_lettings_site/.env
+            echo "ALLOWED_HOSTS=${ALLOWED_HOSTS}" >> oc_lettings_site/.env
       - heroku/deploy-via-git:
           app-name: $HEROKU_APP_NAME
           branch: master
