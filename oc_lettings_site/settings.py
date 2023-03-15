@@ -10,7 +10,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 SECRET_KEY = os.environ.get("SECRET_KEY", "secret_key")
-DEBUG = bool(int(os.environ.get("DEBUG", "1")))
+DEBUG = bool(int(os.environ.get("DEBUG", "1")))  # environment variables are set as strings
 ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "127.0.0.1")
 
 
