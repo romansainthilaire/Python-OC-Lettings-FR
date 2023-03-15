@@ -18,7 +18,7 @@ jobs:
     steps:
       - checkout
       - heroku/deploy-via-git:
-          app-name: oclettingssite
+          app-name: $HEROKU_APP_NAME
           branch: master
       - run:
           name: Install Heroku CLI
@@ -27,11 +27,7 @@ jobs:
       - run:
           name: Create admin
           command: |
-            heroku run python manage.py createadmin \
-            --username $ADMIN_USERNAME \
-            --email $ADMIN_EMAIL \
-            --password $ADMIN_PASSWORD \
-            --app oclettingssite
+            heroku run python manage.py createadmin $ADMIN_USERNAME $ADMIN_EMAIL $ADMIN_PASSWORD --app $HEROKU_APP_NAME
 
 workflows:
   build_and_deploy:
