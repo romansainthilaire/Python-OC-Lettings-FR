@@ -10,6 +10,7 @@ jobs:
       - image: circleci/python:3.9
     steps:
       - checkout
+      - setup_remote_docker
       - run: pip install -r requirements.txt
       - run: python manage.py collectstatic --noinput
       - run: docker build -t romansainthilaire/oc_lettings_site .
