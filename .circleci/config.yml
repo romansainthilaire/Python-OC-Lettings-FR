@@ -1,53 +1,7 @@
 version: 2.1
-
 orbs:
   heroku: circleci/heroku@0.0.10
-  docker: circleci/docker@1.0.0
-
-jobs:
-  build:
-    docker:
-      - image: circleci/python:3.9
-    steps:
-      - checkout
-      - setup_remote_docker
-      - run: pip install -r requirements.txt
-      - run: python manage.py collectstatic --noinput
-      - run: docker build -t romansainthilaire/oc_lettings_site .
-      - run: echo "$DOCKERHUB_PASSWORD" | docker login --username romansainthilaire --password-stdin
-      - run: docker push romansainthilaire/oc_lettings_site
-
-  deploy:
-    docker:
-      - image: circleci/python:3.9-buster
-    steps:
-      - checkout
-      - setup_remote_docker
-      - run:
-          name: Install Heroku CLI
-          command: |
-            curl https://cli-assets.heroku.com/install.sh | sh
-      - run:
-          name: Login to DockerHub
-          command: |
-            echo "$DOCKERHUB_PASSWORD" | docker login --username romansainthilaire --password-stdin
-      - run:
-          name: Pull image from DockerHub
-          command: |
-            docker pull romansainthilaire/oc_lettings_site
-      - run:
-          name: Deploy to Heroku
-          command: |
-            heroku container:login
-            heroku container:release web -a oclettingssite -t $HEROKU_API_KEY --verbose
-
 workflows:
-  build_and_deploy:
+  heroku_deploy:
     jobs:
-      - build
-      - deploy:
-          requires:
-            - build
-          filters:
-            branches:
-              only: master
+      - heroku/deploy-via-git
