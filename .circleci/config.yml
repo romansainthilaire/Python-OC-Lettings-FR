@@ -21,6 +21,10 @@ jobs:
           app-name: oclettingssite
           branch: master
       - run:
+          name: Install Heroku CLI
+          command: |
+            curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
+      - run:
           name: Create admin
           command: |
             heroku run python manage.py createadmin
