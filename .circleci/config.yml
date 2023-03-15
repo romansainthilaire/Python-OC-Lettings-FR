@@ -21,10 +21,10 @@ jobs:
   deploy:
     docker:
       - image: circleci/python:3.8
-      - env:
-          SECRET_KEY: $SECRET_KEY
-          DEBUG: $DEBUG
-          ALLOWED_HOSTS: $ALLOWED_HOSTS
+    environment:
+      SECRET_KEY: $SECRET_KEY
+      DEBUG: $DEBUG
+      ALLOWED_HOSTS: $ALLOWED_HOSTS
     steps:
       - checkout
       - heroku/deploy-via-git:
