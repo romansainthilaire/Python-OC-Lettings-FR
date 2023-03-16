@@ -2,9 +2,10 @@ version: 2.1
 
 orbs:
   heroku: circleci/heroku@0.0.10
+  docker: circleci/docker@1.0.1
 
 jobs:
-  build:
+  build_and_test:
     docker:
       - image: circleci/python:3.8
     steps:
@@ -17,7 +18,27 @@ jobs:
           name: Run tests
           command: |
             pytest
-  deploy:
+
+  build_and_push_docker:
+    docker:
+      - image: docker:20.10.11-git
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Build Docker image
+          command: |
+            docker build -t romansainthilaire/oc_lettings_site .
+      - run:
+          name: Login to DockerHub
+          command: |
+            echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+      - run:
+          name: Push Docker image to DockerHub
+          command: |
+            docker push romansainthilaire/oc_lettings_site
+
+  deploy_to_heroku:
     docker:
       - image: circleci/python:3.8
     steps:
@@ -37,10 +58,17 @@ jobs:
 workflows:
   build_and_deploy:
     jobs:
-      - build
-      - deploy:
+      - build_and_test
+      - build_and_push_docker:
           requires:
-            - build
+            - build_and_test
+          filters:
+            branches:
+              only:
+                - master
+      - deploy_to_heroku:
+          requires:
+            - build_and_push_docker
           filters:
             branches:
               only:
