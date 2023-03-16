@@ -28,7 +28,7 @@ jobs:
       - run:
           name: Build Docker image
           command: |
-            docker build -t romansainthilaire/oc_lettings_site .
+            docker build -t romansainthilaire/oc_lettings_site:$(git rev-parse --short HEAD) .
       - run:
           name: Login to DockerHub
           command: |
