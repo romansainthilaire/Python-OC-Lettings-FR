@@ -38,6 +38,7 @@ jobs:
 workflows:
   build_and_deploy:
     jobs:
+      - setup_remote_docker
       - build
       - deploy:
           requires:
