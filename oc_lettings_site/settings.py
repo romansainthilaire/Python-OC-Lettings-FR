@@ -124,7 +124,7 @@ django_heroku.settings(locals())
 sentry_sdk.init(
     dsn=os.environ.get("SENTRY_DSN"),
     integrations=[
-        sentry_sdk.integration.django.DjangoIntegration(),
+        sentry_sdk.integrations.django.DjangoIntegration(),
     ],
 
     # Set traces_sample_rate to 1.0 to capture 100%
