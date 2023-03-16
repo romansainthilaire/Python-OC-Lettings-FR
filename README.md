@@ -6,6 +6,7 @@ Ce projet a été réalisé dans le cadre de la formation OpenClassrooms *Dével
 - Refonte de l'architecture modulaire
 - Implémentation de tests unitaires avec *Pytest*
 - Création d'un pipeline CI/CD avec *Docker* et *CircleCI*
+- Journalisation via *Sentry*
 
 ## Présentation de l'application
 Note : l'application requiert un interpréteur Python, version 3.6 ou supérieure.
@@ -60,6 +61,7 @@ Par ailleurs, une fois l'application crée sur *Heroku* il est nécessaire de d�
 - SECRET_KEY : clé générée aléatoirement (en utilisant par exemple : https://djecrety.ir/)
 - DEBUG : 0 pour False
 - ALLOWED_HOSTS : [nom application].herokuapp.com
+- SENTRY_DSN : clé liée au projet *Sentry* (dans *Settings* > *Client Keys (DSN)*)
 
 Le pipeline CI/CD exécute trois travaux décrits ci-après. Le travail n°1 s'effectue à chaque commit, quel que soit la branche affectée. Les travaux n°2 et n°3 s'effectuent uniquement lorsque le commit est réalisé sur la branche *master*. Par ailleurs, un travail n'est effectué que si le travail précédent est réalisé avec succès.
 
