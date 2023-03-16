@@ -36,7 +36,7 @@ jobs:
       - run:
           name: Push Docker image to DockerHub
           command: |
-            docker push romansainthilaire/oc_lettings_site
+            docker push romansainthilaire/oc_lettings_site:$(git rev-parse --short HEAD)
 
   deploy_to_heroku:
     docker:
