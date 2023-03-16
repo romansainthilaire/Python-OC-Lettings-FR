@@ -65,13 +65,13 @@ Le pipeline CI/CD exécute trois travaux décrits ci-après. Le travail n°1 s'e
 
 ### Travail n°1 - Linting et lancement des tests
 - Installation des packages définis dans le fichier *requirements.txt*
-- Vérification du code avec Flake8
-- Exécution des tests unitaires avec Pytest
+- Vérification du code avec *Flake8*
+- Exécution des tests unitaires avec *Pytest*
 
 ### Travail n°2 - Création d'une image *Docker* et chargement sur *DockerHub*
-- Création d'une image Docker
-- Chargement de l'image sur DockerHub
+- Création d'une image *Docker*
+- Chargement de l'image sur *DockerHub*
 
 ### Travail n°3 - Déploiement de l'application sur *Heroku*
-- Déploiement du site sur Heroku
+- Déploiement du site sur *Heroku*
 - Création du super utilisateur admin (s'il n'existe pas déjà)
