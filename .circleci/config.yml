@@ -5,6 +5,12 @@ orbs:
   python: circleci/python@1.3.3
 
 jobs:
+  setup_remote_docker:
+    docker:
+      - image: circleci/buildpack-deps:stable
+    steps:
+      - checkout
+      - setup_remote_docker
   build:
     docker:
       - image: romansainthilaire/oc_lettings_site:latest
