@@ -1,8 +1,14 @@
-<title>{{ letting.title }}</title>
-<h1>{{ letting.title }}</h1>
-<p>{{ letting.address.number }} {{ letting.address.street }}</p>
-<p>{{ letting.address.city }}, {{ letting.address.state }} {{ letting.address.zip_code }}</p>
-<p>{{ letting.address.country_iso_code }}</p>
-<div><a href="{% url 'lettings:list' %}">Back</a></div>
-<div><a href="{% url 'index' %}">Home</a></div>
-<div><a href="{% url 'profiles:list' %}">Profiles</a></div>
+{% extends "base.html" %}
+
+{% block title %}{{ letting.title }}{% endblock title %}
+
+{% block content %}
+
+<h1 class="mb-4">{{ letting.title }}</h1>
+
+<p class="mb-2">{{ letting.address.number }} {{ letting.address.street }}</p>
+<p class="mb-2">{{ letting.address.city }}, {{ letting.address.state }} {{ letting.address.zip_code }}</p>
+<p class="mb-2">{{ letting.address.country_iso_code }}</p>
+<a href="{% url 'lettings:list' %}" class="btn btn-primary mt-4">Back</a>
+
+{% endblock content %}

@@ -1,17 +1,21 @@
-<title>Profiles</title>
-<h1>Profiles</h1>
+{% extends "base.html" %}
+
+{% block title %}Profiles{% endblock title %}
+
+{% block content %}
+
+<h1 class="mb-4">Profiles</h1>
+
 {% if profiles %}
-    <ul>
+    <div class="list-group">
     {% for profile in profiles %}
-        <li>
-            <a href="{% url 'profiles:detail' username=profile.user.username %}">
-                {{ profile.user.username }}
-            </a>
-        </li>
+        <a href="{% url 'profiles:detail' username=profile.user.username %}" class="list-group-item list-group-item-action">
+            {{ profile.user.username }}
+        </a>
     {% endfor %}
-    </ul>
+    </div>
 {% else %}
     <p>No profiles are available.</p>
 {% endif %}
-<div><a href="{% url 'index' %}">Home</a></div>
-<div><a href="{% url 'lettings:list' %}">Lettings</a></div>
+
+{% endblock content %}
