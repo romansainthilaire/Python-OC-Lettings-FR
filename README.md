@@ -21,6 +21,8 @@ Le projet initial a été cloné depuis le dépôt suivant : https://github.com/
 *Orange County Lettings* est une start-up fictive dans le secteur de la location de biens immobiliers.
 L'application permet de lister et d'afficher le détail de profils utilisateurs et de biens immobiliers.
 
+Lien de l'application en ligne : https://oclettingssite.herokuapp.com/
+
 ## Installation
 - créer un environnement virtuel : python -m venv [nom]
 - activer l'environnement virtuel : [nom]\Scripts\activate
